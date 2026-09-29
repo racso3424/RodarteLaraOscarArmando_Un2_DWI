@@ -1,0 +1,9 @@
+# Ignorar archivos del sistema y de editores de código
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Ignorar archivos de configuración local / secretos futuros
+config/database.local.php
+*.log
