@@ -4,6 +4,10 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Ignorar archivos de configuración local / secretos futuros
+# Ignorar archivos de configuración local y secretos
+.env
 config/database.local.php
 *.log
+
+# Datos volátiles de docker
+.docker/

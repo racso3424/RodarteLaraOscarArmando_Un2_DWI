@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # Servicio Web PHP + Apache
+  web:
+    build: .
+    container_name: techfix_web
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: techfix_db
+      DB_USER: techfix_user
+      DB_PASS: techfix_password
+    depends_on:
+      - db
+
+  # Servicio de Base de Datos MySQL 8.0
+  db:
+    image: mysql:8.0
+    container_name: techfix_db_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: techfix_db
+      MYSQL_USER: techfix_user
+      MYSQL_PASSWORD: techfix_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql:ro
+
+volumes:
+  mysql_data:
